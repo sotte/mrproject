@@ -1,0 +1,3 @@
+[mkproject.template.substitutions]
+MKPROJECT_AUTHOR = "Your name"
+MKPROJECT_EMAIL = "email@example.com"

@@ -1,0 +1,35 @@
+repos:
+
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v2.3.0
+  hooks:
+    - id: check-yaml
+    - id: end-of-file-fixer
+    - id: trailing-whitespace
+
+- repo: local
+  hooks:
+    - id: format
+      name: format
+      entry: poe format
+      language: system
+      pass_filenames: false
+      always_run: true
+    - id: lint
+      name: lint
+      entry: poe lint
+      language: system
+      pass_filenames: false
+      always_run: true
+    - id: types
+      name: types
+      entry: poe types
+      language: system
+      pass_filenames: false
+      always_run: true
+    - id: test
+      name: test
+      entry: poe test
+      language: system
+      pass_filenames: false
+      always_run: true

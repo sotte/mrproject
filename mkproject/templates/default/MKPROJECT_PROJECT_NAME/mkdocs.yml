@@ -1,0 +1,19 @@
+site_name: "MRPROJECT_PROJECT_NAME"
+
+nav:
+  - "Home": index.md
+  - "API Reference":
+    - "utils": api/utils.md
+
+theme:
+  name: "material"
+
+markdown_extensions:
+  # To be able to include files in the parent folder. for details see:
+  # https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#single-line-format
+  - pymdownx.snippets
+
+plugins:
+- search
+- mkdocstrings:
+    default_handler: python

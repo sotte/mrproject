@@ -1,0 +1,137 @@
+[tool.poetry]
+name = "MRPROJECT_PROJECT_NAME"
+version = "0.1.0"
+description = "TODO: fill me in"
+authors = ["MRPROJECT_AUTHOR <MRPROJECT_EMAIL>"]
+readme = "README.md"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# [tool.poetry.scripts]
+# yourcli = "MRPROJECT_PROJECT_NAME.__main__:main"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+appeal = ">=0.6.2"
+rich = ">=13.7.0"
+tomli = ">=2.0.1"
+platformdirs = ">=4.1.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.0"
+pre-commit = ">=3.5"
+pytest-watcher = ">=0.3"
+pyright = ">=1.1.337"
+mkdocs = ">=1.5"
+mkdocstrings = { extras = ["python"], version = ">=0.24.0" }
+mkdocs-material = ">=9.4.13"
+ruff = ">=0.2"
+cogapp = ">=3.3.0"
+poethepoet = ">=0.24.4"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra --doctest-modules"
+
+[tool.ruff]
+# https://docs.astral.sh/ruff/configuration/
+target-version = "py311"
+
+[tool.ruff.format]
+preview = true
+
+[tool.ruff.lint]
+preview = true
+# Check available linters with `ruff linter`
+select = [
+  "B",   # flake8-bugbear
+  "D",   # pydocstyle
+  "E",   # pycodestyle
+  "F",   # pyflakes
+  "I",   # isort
+  "PD",  # pandas-vet
+  "PT",  # flake8-pytest-style
+  "PTH", # flake8-use-pathlib
+  "UP",  # pyupgrade
+  "W",   # pydocstyle
+]
+ignore = [
+  # "D100",
+  # "D101",
+  # "D102",
+  # "D103",
+  "D104",
+  # "D105",
+  # "D106",
+  # "D107",
+  # "D202",
+  # "D301",
+  # "D419",
+  # "E501",
+  # "PD901",
+]
+[tool.ruff.lint.per-file-ignores]
+"MRPROJECT_PROJECT_NAME/**/__init__.py" = [
+  "D104", # Missing docstring in public package
+]
+"tests/**/*.py" = [
+  "D100", # Missing docstring in public module
+  "D103", # Missing docstring in public function
+]
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 120 # more relaxed settings for doctests
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
+################################################################################
+# POE TASK DEFINITIONS
+# the order matters
+[tool.poe.tasks]
+
+[tool.poe.tasks.chores]
+help = "Run all chores on the code base"
+sequence = ["lint", "format", "types", "test"]
+
+[tool.poe.tasks.test]
+help = "Run tests"
+cmd = "pytest"
+
+[tool.poe.tasks.format]
+help = "Format the code"
+cmd = "ruff format"
+
+[tool.poe.tasks.lint]
+help = "Lint the code"
+cmd = "ruff check --fix"
+
+[tool.poe.tasks.types]
+help = "Type check the code"
+cmd = "pyright MRPROJECT_PROJECT_NAME tests"
+
+[tool.poe.tasks.pre-commit]
+help = "Run all pre-commit checks"
+cmd = "pre-commit run --all-files"
+
+[tool.poe.tasks.docs]
+help = "Build the docs"
+cmd = "mkdocs serve"
+
+[tool.poe.tasks.clean]
+help = "Remove generated files"
+cmd = """
+  rm -rf
+  .coverage
+  .mypy_cache
+  .pytest_cache
+  ./MRPROJECT_PROJECT_NAME/**/__pycache__
+  dist
+  htmlcov
+  """
