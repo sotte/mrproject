@@ -1,4 +1,11 @@
-# `mrproject` - make projects from templates
+![example workflow](https://github.com/sotte/mrproject/actions/workflows/main.yml/badge.svg)
+[![versions](https://img.shields.io/pypi/pyversions/mrproject.svg)](https://github.com/sotte/mrproject)
+[![pypi](https://img.shields.io/pypi/v/mrproject.svg)](https://pypi.python.org/pypi/mrproject)
+[![license](https://img.shields.io/github/license/sotte/mrproject.svg)](https://github.com/sotte/mrproject/blob/main/LICENSE)
+
+---
+
+# `mrproject` - generate projects from templates
 
 This project is [home cooked software](https://www.robinsloan.com/notes/home-cooked-app/).
 But of course, you are free to use it as you wish.
