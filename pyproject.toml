@@ -1,20 +1,20 @@
 [tool.poetry]
-name = "mkproject"
+name = "mrproject"
 version = "0.1.0"
-description = "`mkproject` - make projects from templates"
+description = "`mrproject` - make projects from templates"
 authors = ["Stefan Otte <stefan.otte@gmail.com>"]
 readme = "README.md"
 license = "MIT"
-homepage = "https://github.com/sotte/mkproject/"
-keywords = ["mkproject", "template", "scaffold"]
-packages = [{ include = "mkproject", from = "." }]
+homepage = "https://github.com/sotte/mrproject/"
+keywords = ["mrproject", "template", "scaffold"]
+packages = [{ include = "mrproject", from = "." }]
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-mkproject = "mkproject.__main__:main"
+mrproject = "mrproject.__main__:main"
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -118,7 +118,7 @@ cmd = "ruff check --fix"
 
 [tool.poe.tasks.types]
 help = "Type check the code"
-cmd = "pyright mkproject tests"
+cmd = "pyright mrproject tests"
 
 [tool.poe.tasks.pre-commit]
 help = "Run all pre-commit checks"
@@ -136,9 +136,9 @@ cmd = """
   .coverage
   .mypy_cache
   .pytest_cache
-  ./mkproject/**/__pycache__
-  ./mkproject/**/*.pyc
-  ./mkproject/templates/**/.venv
+  ./mrproject/**/__pycache__
+  ./mrproject/**/*.pyc
+  ./mrproject/templates/**/.venv
   ./tests/**/*.pyc
   dist
   htmlcov

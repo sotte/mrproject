@@ -1,0 +1,3 @@
+[mrproject.template.substitutions]
+MRPROJECT_AUTHOR = "Your name"
+MRPROJECT_EMAIL = "email@example.com"

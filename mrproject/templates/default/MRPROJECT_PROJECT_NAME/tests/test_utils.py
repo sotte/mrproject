@@ -1,4 +1,4 @@
-from MKPROJECT_PROJECT_NAME import utils
+from MRPROJECT_PROJECT_NAME import utils
 
 
 def test_hello_world():

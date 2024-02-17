@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from mkproject.new import new
+from mrproject.new import new
 
 
 @pytest.fixture()

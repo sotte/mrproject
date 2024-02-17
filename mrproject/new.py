@@ -6,7 +6,7 @@ from pathlib import Path
 from rich import print as rprint
 from rich.prompt import Prompt
 
-from mkproject.utils import ConfiguredTemplate, Template
+from mrproject.utils import ConfiguredTemplate, Template
 
 
 def new(
@@ -16,14 +16,14 @@ def new(
 
     Example usage:
 
-        mkproject new my_new_project
-        mkproject new my_new_project --template my_fanxy_template
+        mrproject new my_new_project
+        mrproject new my_new_project --template my_fanxy_template
 
     Options:
 
     --template
         The name or path of the template to use.
-        Use `mkproject list` to list all available templates.
+        Use `mrproject list` to list all available templates.
 
     --no-interaction
         Don't ask for user input but accept defaults.
@@ -34,7 +34,7 @@ def new(
         rprint(f"ERROR: Template '{template}' not found.")
         rprint("Use one of these instead:")
 
-        from mkproject.list import list as list_templates
+        from mrproject.list import list as list_templates
 
         list_templates()
         return
@@ -59,15 +59,15 @@ def new(
 def _configure_template(
     template: Template, project_name: str, destination: Path, no_interaction: bool
 ) -> ConfiguredTemplate:
-    substitutions = deepcopy(template.config["mkproject"]["template"]["substitutions"])
+    substitutions = deepcopy(template.config["mrproject"]["template"]["substitutions"])
 
     if not no_interaction:
         rprint("Overwrite default values. Enter to keeep the default.")
         for k, v in substitutions.items():
             substitutions[k] = Prompt.ask(k, default=v)
 
-    substitutions["MKPROJECT_PROJECT_NAME"] = project_name
-    substitutions["MKPROJECT_CURRENT_YEAR"] = str(datetime.now().year)
+    substitutions["MRPROJECT_PROJECT_NAME"] = project_name
+    substitutions["MRPROJECT_CURRENT_YEAR"] = str(datetime.now().year)
 
     return ConfiguredTemplate(
         template=template,

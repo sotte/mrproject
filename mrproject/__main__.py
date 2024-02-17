@@ -1,8 +1,8 @@
-"""CLI entry for mkproject."""
+"""CLI entry for mrproject."""
 
 import appeal
 
-from mkproject import list, new
+from mrproject import list, new
 
 
 def main():

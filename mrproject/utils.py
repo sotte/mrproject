@@ -25,9 +25,9 @@ class Template:
             return cls(
                 name,
                 template_path,
-                template_path / "MKPROJECT_PROJECT_NAME",
+                template_path / "MRPROJECT_PROJECT_NAME",
                 config=tomli.loads(
-                    (template_path / "mkproject_template.toml").read_text()
+                    (template_path / "mrproject_template.toml").read_text()
                 ),
             )
 
@@ -36,9 +36,9 @@ class Template:
             return cls(
                 name,
                 template_path,
-                template_path / "MKPROJECT_PROJECT_NAME",
+                template_path / "MRPROJECT_PROJECT_NAME",
                 config=tomli.loads(
-                    (template_path / "mkproject_template.toml").read_text()
+                    (template_path / "mrproject_template.toml").read_text()
                 ),
             )
 
@@ -48,8 +48,8 @@ class Template:
     def _is_valid(path: Path) -> bool:
         return (
             path.is_dir()
-            and (path / "mkproject_template.toml").is_file()
-            and (path / "MKPROJECT_PROJECT_NAME").is_dir()
+            and (path / "mrproject_template.toml").is_file()
+            and (path / "MRPROJECT_PROJECT_NAME").is_dir()
         )
 
     @property
@@ -77,7 +77,7 @@ class Template:
 class ConfiguredTemplate:
     template: Template
 
-    project_name: str  # corresponds to MKPROJECT_PROJECT_NAME
+    project_name: str  # corresponds to MRPROJECT_PROJECT_NAME
     project_dir: Path
     substitutions: dict
 
@@ -91,7 +91,7 @@ def get_console() -> Console:
 @cache
 def user_template_dir() -> Path:
     """Return the path to the user's template directory."""
-    return Path(user_data_dir("mkproject"))
+    return Path(user_data_dir("mrproject"))
 
 
 @cache

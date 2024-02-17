@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from mkproject.utils import get_console, list_templates, user_template_dir
+from mrproject.utils import get_console, list_templates, user_template_dir
 
 
 def list() -> None:
@@ -12,7 +12,7 @@ def list() -> None:
     def print_template_entry(template: Path) -> None:
         console.print(f" - '{template.name}' ({template})")
 
-    console.print("mkproject templates:")
+    console.print("mrproject templates:")
     for template in default_templates:
         print_template_entry(template)
 

@@ -1,6 +1,6 @@
-# `default` template of `mkproject`
+# `default` template of `mrproject`
 
-A simple template for [`mkproject`](https://github.com/sotte/mkproject)
+A simple template for [`mrproject`](https://github.com/sotte/mrproject)
 with (hopefully) reasonable defaults.
 
 Features:
