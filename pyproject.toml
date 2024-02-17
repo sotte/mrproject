@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mrproject"
-version = "0.1.0"
+version = "0.2.0"
 description = "`mrproject` - make projects from templates"
 authors = ["Stefan Otte <stefan.otte@gmail.com>"]
 readme = "README.md"

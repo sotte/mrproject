@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Changed
+
+### Fixed
+
+### Removed
+
+## [0.2.0] - 2024-02-17
+
+### Added
+
 - Load user config to override default substitutions of a template.
 
 ### Changed
