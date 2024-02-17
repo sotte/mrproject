@@ -1,8 +1,11 @@
+from contextlib import suppress
 from copy import deepcopy
 from datetime import datetime
 from functools import partial
 from pathlib import Path
 
+import tomli
+from platformdirs import user_config_dir
 from rich import print as rprint
 from rich.prompt import Prompt
 
@@ -61,13 +64,26 @@ def _configure_template(
 ) -> ConfiguredTemplate:
     substitutions = deepcopy(template.config["mrproject"]["template"]["substitutions"])
 
+    # overwrite default values with user config
+    user_config_path = Path(user_config_dir("mrproject")) / "config.toml"
+    if user_config_path.is_file():
+        rprint(f"Loading user config from {user_config_path}.")
+        user_config = tomli.loads(user_config_path.read_text())
+        with suppress(KeyError):
+            for k, v in user_config["mrproject"]["template"]["substitutions"].items():
+                substitutions[k] = v
+
+    # overwrite default values with user input
     if not no_interaction:
         rprint("Overwrite default values. Enter to keeep the default.")
         for k, v in substitutions.items():
             substitutions[k] = Prompt.ask(k, default=v)
 
+    # set useful substitutions
     substitutions["MRPROJECT_PROJECT_NAME"] = project_name
     substitutions["MRPROJECT_CURRENT_YEAR"] = str(datetime.now().year)
+    substitutions["MRPROJECT_CURRENT_MONTH"] = str(datetime.now().month)
+    substitutions["MRPROJECT_CURRENT_DAY"] = str(datetime.now().day)
 
     return ConfiguredTemplate(
         template=template,

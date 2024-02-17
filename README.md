@@ -56,11 +56,12 @@ Create a new project from a template with `project_name`.
 ```
 
 When calling `mrproject new`
-the user is asked to specify/overwrite all variables defined in `mrproject_template.toml`,
-the template project is copied to the current working directory,
-every occurrence of `MRPROJECT_*` is replaced with the corresponding value
-(including the folder and file names),
-and that's it.
+- the user config file is read (`~/.config/mrproject/config.toml`),
+- the user is asked to specify/overwrite all variables defined in `mrproject_template.toml`,
+- the template project is copied to the current working directory,
+- every occurrence of `MRPROJECT_*` is replaced with the corresponding value
+  (including the folder and file names),
+- and that's it.
 This approach is very limited (on purpose) and very simple.
 
 ### Usage: `mrproject list`
@@ -123,6 +124,17 @@ Then, you can create your own template by putting it in the `templates` folder u
             ...
         tests/
             ...
+```
+
+## User Config
+
+The user config file is located at `~/.config/mrproject/config.toml`.
+Currently you can only specify default substitutions:
+
+```toml
+[mrproject.template.substitutions]
+MRPROJECT_AUTHOR = "your name"
+MRPROJECT_EMAIL = "your@email.com"
 ```
 
 ## Why `mrproject`?

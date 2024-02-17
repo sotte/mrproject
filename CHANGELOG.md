@@ -9,7 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Load user config to override default substitutions of a template.
+
 ### Changed
+
+- Change name from `mkproject` to `mrproject` as PyPI name is already taken.
 
 ### Fixed
 
