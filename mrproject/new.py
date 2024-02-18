@@ -32,6 +32,9 @@ def new(
         Don't ask for user input but accept defaults.
 
     """
+    if not _is_valid_project_name(project_name):
+        return
+
     _template = Template.from_name(template)
     if _template is None:
         rprint(f"ERROR: Template '{template}' not found.")
@@ -56,7 +59,6 @@ def new(
     source_files = configured_template.template.source_files
     src_dst_files = map(add_dst_file_func, source_files)
     list(map(copy_and_substitute_func, src_dst_files))
-    return
 
 
 def _configure_template(
@@ -135,3 +137,28 @@ def _copy_and_substitute(
         rprint(f"- [green]Creating[/green] '{dst_file_relative}'.")
         dst_file.parent.mkdir(parents=True, exist_ok=True)
         dst_file.write_text(src_content)
+
+
+def _is_valid_project_name(project_name: str) -> bool:
+    allowed_chars = "abcdefghijklmnopqrstuvwxyz1234567890_"
+
+    if project_name == "":
+        rprint("ERROR: Project name cannot be empty.")
+        return False
+
+    if project_name is None:
+        rprint("ERROR: Project name cannot be None.")
+        return False
+
+    if not str.isalpha(project_name[0]):
+        rprint("ERROR: Project name must start with an alpha character.")
+        return False
+
+    _illegal_chars = [c for c in project_name if c not in allowed_chars]
+    if len(_illegal_chars) > 0:
+        rprint(
+            f"ERROR: Project name can only contain '{allowed_chars}' but found '{_illegal_chars}'"
+        )
+        return False
+
+    return True
